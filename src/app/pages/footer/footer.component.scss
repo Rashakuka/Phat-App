@@ -1,0 +1,23 @@
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 20%;
+}
+
+.example-form {
+  width: 100%;
+}
+
+.example-full-width {
+  min-width: 50%;
+  max-width: 50%;
+  width: 100%;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

@@ -1,0 +1,20 @@
+<mat-toolbar class="footer">
+  <form class="example-form">
+
+    <mat-form-field  appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Rythm">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" hintLabel="Max 255 characters" appearance="fill">
+      <mat-label>Message</mat-label>
+      <input matInput #input maxlength="255" placeholder="Ex. BRING BACK GROOVY BOT">
+      <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
+    </mat-form-field>
+
+      <button mat-mini-fab color="primary" aria-label="Send">
+        <mat-icon>send</mat-icon>
+      </button>
+
+  </form>
+</mat-toolbar>
