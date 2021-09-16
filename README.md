@@ -1,4 +1,7 @@
-# Plyatund
+# PHAT
+
+Pay to write messages. Why write free messages if you can afford them?
+# PHAT
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
