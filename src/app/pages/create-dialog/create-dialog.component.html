@@ -1,19 +1,22 @@
-<h1 mat-dialog-title>Create</h1>
+<h1 mat-dialog-title>Confirm message</h1>
 <div mat-dialog-content>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="fill-field" appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.name">
+    <input matInput [disabled]="true" [(ngModel)]="_data.name">
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field class="fill-field" appearance="fill">
     <mat-label>Message</mat-label>
-    <input matInput [(ngModel)]="data.message">
+    <input matInput [disabled]="true" [(ngModel)]="_data.message">
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" class="fill-field">
     <mat-label>Value</mat-label>
-    <input matInput [(ngModel)]="data.value">
+    <input matInput [disabled]="true" [(ngModel)]="_data.value">
   </mat-form-field>
+  <div class="plyatund-header-image">
+    <svg [data-jdenticon-value]="_data.name + _data.value + _data.message" class="nft-message"></svg>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Donate</button>
+<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<div mat-dialog-actions >
+  <button mat-button appearance="outline" (click)="onCancel()">Cancel</button>
 </div>

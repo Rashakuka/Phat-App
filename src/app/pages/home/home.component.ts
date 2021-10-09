@@ -38,18 +38,6 @@ export class HomeComponent implements OnInit {
         this.listMessages();
       }
     });
-
-  }
-
-  async listMessages() {
-    try
-    {
-      this.dataSource = await this.messagesService.getMessages() as IMessage[];
-    }
-    catch(error)
-    {
-      console.error(error);
-    }
   }
 
   async createMessage(message: IMessage) {
@@ -63,4 +51,16 @@ export class HomeComponent implements OnInit {
       console.error(error);
     }
   }
+
+  async listMessages() {
+    try
+    {
+      this.dataSource = await this.messagesService.getMessages() as IMessage[];
+    }
+    catch(error)
+    {
+      console.error(error);
+    }
+  }
+
 }

@@ -1,20 +1,28 @@
-<mat-toolbar class="footer">
-  <form class="example-form">
+<div class="conversation-compose">
+  <div class="example-form">
+    <form #userPost="ngForm" (ngSubmit)="openDialog(userPost.value)">
 
-    <mat-form-field  appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Ex. Rythm">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" ngModel placeholder="Ex. Rythm">
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width" hintLabel="Max 255 characters" appearance="fill">
-      <mat-label>Message</mat-label>
-      <input matInput #input maxlength="255" placeholder="Ex. BRING BACK GROOVY BOT">
-      <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
-    </mat-form-field>
+      <mat-form-field class="margin-left-10px" appearance="outline">
 
-      <button mat-mini-fab color="primary" aria-label="Send">
+        <mat-label>Value</mat-label>
+        <input matInput name="value" ngModel placeholder="Ex. 45">
+
+      </mat-form-field>
+
+      <mat-form-field class="fill-field" appearance="outline">
+        <mat-label>Message</mat-label>
+        <input matInput name="message" ngModel maxlength="255" class="input-msg"  placeholder="Ex. BRING BACK GROOVY BOT">
+      </mat-form-field>
+
+      <button type="submit" mat-mini-fab color="primary" class="button-send" aria-label="Send">
         <mat-icon>send</mat-icon>
       </button>
+    </form>
 
-  </form>
-</mat-toolbar>
+  </div>
+</div>

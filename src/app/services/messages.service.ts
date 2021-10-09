@@ -9,10 +9,10 @@ import { Injectable } from '@angular/core';
 export class MessagesService {
   constructor(private http: HttpClient) { }
   getMessages() {
-    return this.http.get<IMessage[]>(`${API_PATH}Message`).toPromise();
+    return this.http.get<IMessage[]>(`${API_PATH}/Messages`).toPromise();
   }
 
   postMessage(message: IMessage) {
-    return this.http.post<IMessage>(`${API_PATH}Message`, message).toPromise();
+    return this.http.post<IMessage>(`${API_PATH}/Messages`, message).toPromise();
   }
 }
