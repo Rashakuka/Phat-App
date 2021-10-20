@@ -3,7 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { IMessage } from 'src/app/Interfaces/IMessage';
+import { IMessagePost } from 'src/app/Interfaces/IMessagePost';
 import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
@@ -13,10 +13,10 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class CreateDialogComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
-  element!: IMessage;
+  element!: IMessagePost;
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public _data: IMessage,
+    public _data: IMessagePost,
     public _dialogRef: MatDialogRef<CreateDialogComponent>,
     private _snackBar: MatSnackBar,
     private messagesService: MessagesService
@@ -40,22 +40,22 @@ export class CreateDialogComponent implements OnInit {
           {
             amount: {
               currency_code: 'USD',
-              value: this._data.value.toString(),
+              value: this._data.ammount.toString(),
               breakdown: {
                 item_total: {
                   currency_code: 'USD',
-                  value: this._data.value.toString()
+                  value: this._data.ammount.toString()
                 }
               }
             },
             items: [
               {
-                name: this._data.name.toString() + this._data.message.toString(),
+                name: this._data.name.toString() + this._data.text.toString(),
                 quantity: '1',
                 category: 'DIGITAL_GOODS',
                 unit_amount: {
                   currency_code: 'USD',
-                  value: this._data.value.toString(),
+                  value: this._data.ammount.toString(),
                 },
               }
             ]
@@ -73,12 +73,19 @@ export class CreateDialogComponent implements OnInit {
         // Aqui ele aprovar a transação mas não está autorizada ainda
         this._snackBar.open('Transaction was approved, wait... ' + data + ' ' + actions, 'OK');
 
-        actions.order.get().then((details: any) => {
-          debugger
-          // Aqui ele complate a tranzação
-          this._snackBar.open('Your message has been approved.', 'OK');
-          this.createMessage(this._data);
+        actions.order.get().then(async (details: any) => {
+          // Aqui ele complata a tranzação
+          this._data.currency = 'USD';
+          this._data.orderId = data.orderID;
+          this._data.user = {
+            payerId: data.payerID,
+            address: details.payer?.address?.country_code,
+            email: details.payer?.email_address
+          }
+          var message = await this.createMessage(this._data);
+
           this._dialogRef.close();
+          this._snackBar.open(message, 'OK');
           console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
@@ -97,14 +104,15 @@ export class CreateDialogComponent implements OnInit {
     };
   }
 
-  async createMessage(message: IMessage) {
+  async createMessage(message: IMessagePost) {
     try
     {
-      await this.messagesService.postMessage(message);
+      return await this.messagesService.postMessage(message);
     }
     catch(error)
     {
       console.error(error);
+      return "";
     }
   }
 }

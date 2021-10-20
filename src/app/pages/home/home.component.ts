@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
 import { IMessage } from 'src/app/Interfaces/IMessage';
+import { IMessagePost } from 'src/app/Interfaces/IMessagePost';
 import { MatDialog } from '@angular/material/dialog';
 import { MessagesService } from 'src/app/services/messages.service';
 
@@ -40,7 +41,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async createMessage(message: IMessage) {
+  async createMessage(message: IMessagePost) {
     try
     {
       const me = await this.messagesService.postMessage(message);

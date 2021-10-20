@@ -3,14 +3,14 @@
       <mat-card *ngFor="let data of dataSource" class="plyatund-card">
         <mat-card-header>
           <div mat-card-avatar class="plyatund-header-image">
-            <svg [data-jdenticon-value]="data.name + data.value + data.message"></svg>
+            <svg [data-jdenticon-value]="data.userName+ data.ammount + data.text"></svg>
           </div>
-          <mat-card-title>$ {{ data.value | number: '.2'}}</mat-card-title>
-          <mat-card-subtitle>{{data.name}}</mat-card-subtitle>
+          <mat-card-title>$ {{ data.ammount | number: '.2'}}</mat-card-title>
+          <mat-card-subtitle>{{data.userName}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <p>
-            {{data.message}}
+            {{data.text}}
           </p>
         </mat-card-content>
       </mat-card>

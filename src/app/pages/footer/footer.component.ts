@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateDialogComponent, {
       width: '500px',
       data: element === null ? {
-        value: null,
+        ammount: null,
         name: '',
         message: ''
       } : element

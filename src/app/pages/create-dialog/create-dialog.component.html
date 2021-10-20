@@ -6,14 +6,14 @@
   </mat-form-field>
   <mat-form-field class="fill-field" appearance="fill">
     <mat-label>Message</mat-label>
-    <input matInput [disabled]="true" [(ngModel)]="_data.message">
+    <input matInput [disabled]="true" [(ngModel)]="_data.text">
   </mat-form-field>
   <mat-form-field appearance="fill" class="fill-field">
     <mat-label>Value</mat-label>
-    <input matInput [disabled]="true" [(ngModel)]="_data.value">
+    <input matInput [disabled]="true" [(ngModel)]="_data.ammount">
   </mat-form-field>
   <div class="plyatund-header-image">
-    <svg [data-jdenticon-value]="_data.name + _data.value + _data.message" class="nft-message"></svg>
+    <svg [data-jdenticon-value]="_data.name + _data.ammount + _data.text" class="nft-message"></svg>
   </div>
 </div>
 <ngx-paypal [config]="payPalConfig"></ngx-paypal>

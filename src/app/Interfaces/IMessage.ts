@@ -1,6 +1,6 @@
 export interface IMessage {
   id?: number,
-  value: number,
-  name: string,
-  message: string
+  ammount: number,
+  userName: string,
+  text: string
 }
